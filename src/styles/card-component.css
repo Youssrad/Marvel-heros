@@ -1,0 +1,21 @@
+.card-component {
+    height: 200px;
+    width: 180px;
+    margin: 10px;
+    background-color: #59996a;
+}
+
+h1 {
+    color: #fff;
+    font-size: 15px;
+    margin: 10px;
+    text-overflow: clip;
+}
+
+.card-image {
+    height: 160px;
+    width: 140px;
+    margin: 0px 10px 10px 10px;
+    overflow: hidden;
+
+}

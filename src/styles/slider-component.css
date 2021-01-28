@@ -1,0 +1,46 @@
+.right-arrow {
+    color: #e3e3e3;
+    position: fixed;
+    top: 50%;
+    right: 32px;
+    font-size: 3rem;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.7;
+
+}
+
+.left-arrow {
+    color: #e3e3e3;
+    position: fixed;
+    top: 50%;
+    left: 32px;
+    font-size: 3rem;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.5;
+}
+
+
+.left-arrow:hover {
+    color: #b8b4b4;
+}
+
+.right-arrow:hover {
+    color: #b8b4b4;
+}
+
+.card-list {
+    margin: 1rem;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+}
+
+.cards{
+    margin: 1rem;
+}
+

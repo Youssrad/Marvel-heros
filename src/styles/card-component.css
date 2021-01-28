@@ -1,21 +1,112 @@
-.card-component {
-    height: 200px;
-    width: 180px;
-    margin: 10px;
-    background-color: #59996a;
+/* .card-component {
+    height: 180px;
+    width: 160px;
+    background-color: #bad1c0;
+    border-radius: 10px;
+    position: relative;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-component:hover {
+    background-color: #8faf98;
 }
 
 h1 {
     color: #fff;
-    font-size: 15px;
-    margin: 10px;
+    font-size: 25px;
+    margin: 40px;
     text-overflow: clip;
+
 }
 
 .card-image {
-    height: 160px;
-    width: 140px;
-    margin: 0px 10px 10px 10px;
+    height: 140px;
+    width: 120px;
     overflow: hidden;
+    position: relative;
+    margin: 40px;
+    opacity: 1;
 
+} */
+
+
+
+.card-container {
+    width: 300px; 
+    height: 380px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.3s;
+    animation: ease-in-out;
+}
+
+.card-container:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px 0px;
+
+}
+
+.image-container img{
+    overflow: hidden;
+    height: 200px;
+    width: 100%;
+}
+
+
+.card-content {
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+
+h3, p {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    line-height: 1.5;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.card-body {
+    height: 90px;
+}
+
+.btn {
+    display: flex; 
+    justify-content: center;
+    transition: 0.2s;
+    animation: ease;
+
+}
+
+.btn button {
+    padding: 0.5rem;
+    background-color: #fff; 
+    border: none; 
+    transition: 0.2s;
+    animation: ease;
+
+}
+
+.btn button:hover {
+    background-color: rgb(241, 109, 109); 
+    cursor: pointer;
+}
+
+a {
+    text-transform: uppercase;
+   color:  rgb(241, 109, 109);
+   transition: 0.2s
+}
+
+a:hover {
+    color: #fff;
 }

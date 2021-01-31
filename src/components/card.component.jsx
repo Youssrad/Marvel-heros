@@ -1,41 +1,107 @@
-import React from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import '../styles/card-component.css'
 
-export const Card = (props) => (
+export const Card = (props) => {
+    const outside = useRef();
+    const [isOpen, setOpen] = useState(false); 
 
-    <div className="card-container">
-        <div className='image-container'>
-            <img src={`${ props.character.thumbnail.path}.${ props.character.thumbnail.extension}`} alt='' />
-        </div>
-        <div className="card-content">
-        <div className="card-title">
-            <h3>{
-            props.character != null ? 
-            props.character.name 
-            : 'No characters were found'}
-            </h3>
-        </div>
-        <div className="card-body">
-            <p>{ props.character != null ? 
-            props.character.description 
-            : ''}
-        </p>
-        </div>
-        <div className="btn">
-            <button>
-                <a>View More</a>
-            </button>
-        </div>
+    const handleClick = e => {
+            if(outside.current.contains(e.target)) {
+            return
+        }
+        setOpen(false);
+    }
 
-        </div>
+    useEffect(() => {
+        const getClick = document.addEventListener('click', handleClick); 
+        return () => {
+            getClick()
+        }
+    }, [])
+
+    return (
+        <div ref={outside}>
+            <div className="card-container">
+            <div className='image-container'>
+                <img src={`${ props.character.thumbnail.path}.${ props.character.thumbnail.extension}`} alt='' />
+            </div>
+            <div className="card-content">
+            <div className="card-title">
+                <h3>{
+                props.character != null ? 
+                props.character.name 
+                : 'No characters were found'}
+                </h3>
+            </div>
+            <div className="card-body">
+                <p>{ props.character != null ? 
+                props.character.description 
+                : ''}
+            </p>
+            </div>
+            <div className="btn">
+                <button onClick={() => setOpen(!isOpen)}>
+                    <a>View More</a>
+                </button>
+            </div>
+
+            </div>
+            </div>
+    {
+        isOpen ? (
+            <div className="modal" onClick={() => setOpen(!isOpen)}>
+                <div className='modal-content'> 
+                    <div className='img-container'>
+                        <img src={`${ props.character.thumbnail.path}.${ props.character.thumbnail.extension}`} alt='' />
+                    </div>
+                <div className="column-text">
+                <div className='title-container'>
+                        <h3>{
+                        props.character != null ? 
+                        props.character.name 
+                        : 'No characters were found'}
+                        </h3>
+                    </div>
+                    <div className='content-container'>
+                        <p>{ props.character != null ? 
+                            props.character.description 
+                            : ''}
+                        </p>
+                    </div>
+                    <div className='url-container'>
+                    <ul>
+                        <li>
+                        <a
+                        style={{display: "table-cell"}} 
+                        target = "_blank" 
+                        rel = "noopener noreferrer"
+                        href={props.character != null ? props.character.urls[0].url : '#'}>Details</a>
+
+                        </li>
+                        <li>
+                        <a  
+                        style={{display: "table-cell"}} 
+                        target = "_blank" 
+                        rel = "noopener noreferrer"
+                        href={props.character != null ? props.character.urls[1].url : '#'}>Wiki</a>
+
+                        </li>
+                        <li>
+                        <a
+                        style={{display: "table-cell"}} 
+                        target = "_blank" 
+                        rel = "noopener noreferrer"
+                        href={props.character != null ? props.character.urls[1].url : '#'}>Comics</a>
+
+                        </li>
+                    </ul>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+        ): <div></div>
+    }
     </div>
-);
-    
-
-{/* <div className="card-component">
-<h1>{
-props.character != null ? 
-props.character.name 
-: 'No characters were found'}</h1>
- <img className="card-image" src={`${ props.character.thumbnail.path}.${ props.character.thumbnail.extension}`} alt='' />
-</div> */} 
+    );
+}

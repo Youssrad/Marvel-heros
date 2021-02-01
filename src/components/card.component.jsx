@@ -1,29 +1,16 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState } from 'react';
 import '../styles/card-component.css'
 
 export const Card = (props) => {
-    const outside = useRef();
     const [isOpen, setOpen] = useState(false); 
 
-    const handleClick = e => {
-            if(outside.current.contains(e.target)) {
-            return
-        }
-        setOpen(false);
-    }
-
-    useEffect(() => {
-        const getClick = document.addEventListener('click', handleClick); 
-        return () => {
-            getClick()
-        }
-    }, [])
-
     return (
-        <div ref={outside}>
+        <div>
             <div className="card-container">
             <div className='image-container'>
+            { props.character != null ?
                 <img src={`${ props.character.thumbnail.path}.${ props.character.thumbnail.extension}`} alt='' />
+            : <div></div>}
             </div>
             <div className="card-content">
             <div className="card-title">
@@ -92,7 +79,6 @@ export const Card = (props) => {
                         target = "_blank" 
                         rel = "noopener noreferrer"
                         href={props.character != null ? props.character.urls[1].url : '#'}>Comics</a>
-
                         </li>
                     </ul>
 

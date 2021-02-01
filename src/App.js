@@ -3,65 +3,62 @@ import {React, useState,useEffect, useRef} from 'react'
 import  CardList  from './components/card-list.component';
 import SearchComponent from './components/search.component';
 
-const fetchURL = "https://gateway.marvel.com:443/v1/public/characters?apikey=de805a5f431844001ff17a1469863a82";
+const apiKey = 'de805a5f431844001ff17a1469863a82';
+const fetchURL = `https://gateway.marvel.com:443/v1/public/characters?apikey=${apiKey}`;
+
 
 function App() {
   const [characters, setCharacters] = useState([]);
   const [searchedCharacters, setSearchedCharacters] = useState([]);
-
   const [input, setInput] = useState('');
 
   const elements = useRef(true);
 
 
- async function getItems (){
-   return await fetch(fetchURL).then(res => res.json())  
+async function getItems (){
+  return await fetch(fetchURL).then(res => res.json())  
 };
-
 
   useEffect(() => {
     if(elements.current) {
       getItems().then(res => {
         setCharacters({characters: res.data.results})
-        setSearchedCharacters({searchedCharacters: res.data.results})
+        setSearchedCharacters({setSearchedCharacters: res.data.results})
       });
-
     }
   }, []);
 
-
-  const updateInput = async (input) => {
-    if(input == null || characters.characters == null) {
-      return;
-    }
-    const heroes = Object.entries(characters);
-    const filtered = heroes.filter(hero => { 
-      return hero[0][0].name;
-    })
-    console.log(filtered);
-
-    setInput(input);
-    console.log(filtered);
-    if(filtered === undefined) {
-      setSearchedCharacters(characters.characters);
-    }
-    setSearchedCharacters(filtered);
+  const handleInput = e => {
+    setInput(e)
+    characters.characters.filter( val => {
+        if(input == "")
+        {
+          return setSearchedCharacters({...characters.characters});
+        }
+        else if (val.name.toLowerCase().includes(input.toLowerCase())) {
+          console.log("yes");
+          setSearchedCharacters(val);
+        }
+      }
+    )
+    console.log(searchedCharacters);
   }
-
- if(characters) {
-   console.log("characters here:", characters.characters)
-   console.log("searched", searchedCharacters.searchedCharacters)
-   return <div>
-          <SearchComponent input={input}  
-          setKeyword={updateInput} />
-
-          <CardList characters={searchedCharacters.searchedCharacters}/>
-          </div>
-} else {
+  
+if(searchedCharacters && characters) {
   return <div>
-      <h1>No Characters founded</h1>
-  </div>
- }
+          <SearchComponent input={input}  
+            setKeyword={handleInput} />
+            { 
+              input !== "" ? (
+              <CardList characters={searchedCharacters.searchedCharacters}/>
+              ) :
+              <CardList characters={characters.characters}/>
+            }
+          </div>
+      } else {
+        return <div>
+        </div>
+      }
 }
 
 export default App;

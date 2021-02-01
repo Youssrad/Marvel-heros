@@ -1,5 +1,5 @@
 import './App.css';
-import {React, useState,useEffect, useRef} from 'react'
+import {React, useState,useEffect} from 'react'
 import  CardList  from './components/card-list.component';
 import SearchComponent from './components/search.component';
 import HeaderComponent from './components/header.component';
@@ -13,22 +13,19 @@ function App() {
   const [searchedCharacters, setSearchedCharacters] = useState([]);
   const [input, setInput] = useState('');
 
-  const elements = useRef(true);
-
   async function getItems () {
     return await fetch(fetchURL).then(res => res.json())  
   };
 
   useEffect(() => {
-    if (elements.current) {
       getItems().then(res => {
         setCharacters({ characters: res.data.results })
       });
-    }
+    
   }, []);
 
   useEffect(() => {
-    if (input == "") {
+    if (input === "") {
       setSearchedCharacters([]);
     } else {
       const newCharacters = characters.characters.filter(val => {

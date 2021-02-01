@@ -3,9 +3,7 @@ import '../styles/header-component.css';
 
 const HeaderComponent = () => {
     return (
-        <div className="header-container">
-            
-        </div>
+        <div className="header-container"></div>
     );
 }
 

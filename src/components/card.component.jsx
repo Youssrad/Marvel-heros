@@ -41,49 +41,48 @@ export const Card = (props) => {
                     <div className='img-container'>
                         <img src={`${ props.character.thumbnail.path}.${ props.character.thumbnail.extension}`} alt='' />
                     </div>
-                <div className="column-text">
-                <div className='title-container'>
-                        <h3>{
-                        props.character != null ? 
-                        props.character.name 
-                        : 'No characters were found'}
-                        </h3>
-                    </div>
-                    <div className='content-container'>
-                        <p>{ props.character != null ? 
-                            props.character.description 
-                            : ''}
-                        </p>
-                    </div>
-                    <div className='url-container'>
-                    <ul>
-                        <li>
-                        <a
-                        style={{display: "table-cell"}} 
-                        target = "_blank" 
-                        rel = "noopener noreferrer"
-                        href={props.character != null ? props.character.urls[0].url : '#'}>Details</a>
+                    <div className="column-text">
+                        <div className='title-container'>
+                            <h3>{
+                            props.character != null ? 
+                            props.character.name 
+                            : 'No characters were found'}
+                            </h3>
+                        </div>
+                        <div className='content-container'>
+                            <p>{ props.character != null ? 
+                                props.character.description 
+                                : ''}
+                            </p>
+                        </div>
+                        <div className='url-container'>
+                        <ul>
+                            <li>
+                            <a
+                            style={{display: "table-cell"}} 
+                            target = "_blank" 
+                            rel = "noopener noreferrer"
+                            href={props.character != null ? props.character.urls[0].url : '#'}>Details</a>
 
-                        </li>
-                        <li>
-                        <a  
-                        style={{display: "table-cell"}} 
-                        target = "_blank" 
-                        rel = "noopener noreferrer"
-                        href={props.character != null ? props.character.urls[1].url : '#'}>Wiki</a>
+                            </li>
+                            <li>
+                            <a  
+                            style={{display: "table-cell"}} 
+                            target = "_blank" 
+                            rel = "noopener noreferrer"
+                            href={props.character != null ? props.character.urls[1].url : '#'}>Wiki</a>
 
-                        </li>
-                        <li>
-                        <a
-                        style={{display: "table-cell"}} 
-                        target = "_blank" 
-                        rel = "noopener noreferrer"
-                        href={props.character != null ? props.character.urls[1].url : '#'}>Comics</a>
-                        </li>
-                    </ul>
-
+                            </li>
+                            <li>
+                            <a
+                            style={{display: "table-cell"}} 
+                            target = "_blank" 
+                            rel = "noopener noreferrer"
+                            href={props.character != null ? props.character.urls[1].url : '#'}>Comics</a>
+                            </li>
+                        </ul>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         ): <div></div>

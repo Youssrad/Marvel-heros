@@ -1,0 +1,11 @@
+.header-container {
+    width: 100%;
+    left: 0;
+    right: 0;
+    position: fixed;
+    height: 15%;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/5616ac17e4b018d366f57f53/1521051407167-ZDLO5Y7ZD653XZ1HUI4T/ke17ZwdGBToddI8pDm48kEInRDqV_Abr_cVG700ccXkUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcgZM2vOBYya0KM3uMXt13-S-TxlNxUt-OqF8DS-Qe7gEO7vGhWk1MLfu5V4GEULz4/marvel-banner.jpg');
+    background-size: 100% 100%;
+    background-repeat: none;
+    margin-bottom: 40px;
+}

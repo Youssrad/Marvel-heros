@@ -2,6 +2,7 @@ import './App.css';
 import {React, useState,useEffect, useRef} from 'react'
 import  CardList  from './components/card-list.component';
 import SearchComponent from './components/search.component';
+import HeaderComponent from './components/header.component';
 
 const apiKey = 'de805a5f431844001ff17a1469863a82';
 const fetchURL = `https://gateway.marvel.com:443/v1/public/characters?apikey=${apiKey}`;
@@ -23,7 +24,6 @@ async function getItems (){
     if(elements.current) {
       getItems().then(res => {
         setCharacters({characters: res.data.results})
-        setSearchedCharacters({setSearchedCharacters: res.data.results})
       });
     }
   }, []);
@@ -41,20 +41,26 @@ async function getItems (){
         }
       }
     )
-    console.log(searchedCharacters);
   }
   
 if(searchedCharacters && characters) {
-  return <div>
-          <SearchComponent input={input}  
-            setKeyword={handleInput} />
+  console.log('search here:',searchedCharacters);
+  return <div className="app-container">
+        <div className="header-section">
+          <HeaderComponent />
+        </div>
+        <div className="body-section">
+        <SearchComponent input={input}  
+            setKeyword={handleInput}
+            />
             { 
               input !== "" ? (
               <CardList characters={searchedCharacters.searchedCharacters}/>
               ) :
               <CardList characters={characters.characters}/>
             }
-          </div>
+        </div>
+      </div>
       } else {
         return <div>
         </div>

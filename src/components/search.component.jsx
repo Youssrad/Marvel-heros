@@ -3,7 +3,7 @@ import React from 'react';
 
 import '../styles/search-component.css';
 
-const SearchComponent = ({keyword, setKeyword}) => {
+const SearchComponent = ({keyword, setKeyword, onClick}) => {
 
     return (
       <div className='search-container'>
@@ -15,7 +15,7 @@ const SearchComponent = ({keyword, setKeyword}) => {
               placeholder={"Search hero"}
               onChange={(e) => setKeyword(e.target.value)}
           />
-        </div>
+      </div>
       </div>
     );
 } 

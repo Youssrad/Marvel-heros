@@ -6,11 +6,12 @@ import '../styles/slider-component.css';
 
 const Cardlist = (props) => {
     const [current, setCurrent] = useState('');
-    if(props.characters == null ) {
+    if(props.characters == null) {
         return null;
     }
     
     const heroes = Object.entries(props.characters);
+    console.log("🚀 ~ file: card-list.component.jsx ~ line 14 ~ Cardlist ~ heroes", heroes)
 
 
     if(!Array.isArray(heroes) || heroes.length <= 0) {
@@ -30,7 +31,7 @@ const Cardlist = (props) => {
         <div className='card-list'>
             {/* <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide}/>
             <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} /> */}
-    { heroes.map(([index, value]) => {
+    {heroes.map(([index, value]) => {
         return <section key={index}  className='cards'>
                 <Card character={value} />
         </section>

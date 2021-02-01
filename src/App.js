@@ -15,56 +15,57 @@ function App() {
 
   const elements = useRef(true);
 
-
-async function getItems (){
-  return await fetch(fetchURL).then(res => res.json())  
-};
+  async function getItems () {
+    return await fetch(fetchURL).then(res => res.json())  
+  };
 
   useEffect(() => {
-    if(elements.current) {
+    if (elements.current) {
       getItems().then(res => {
-        setCharacters({characters: res.data.results})
+        setCharacters({ characters: res.data.results })
       });
     }
   }, []);
 
-  const handleInput = e => {
-    setInput(e)
-    characters.characters.filter( val => {
-        if(input == "")
-        {
-          return setSearchedCharacters({...characters.characters});
+  useEffect(() => {
+    if (input == "") {
+      setSearchedCharacters([]);
+    } else {
+      const newCharacters = characters.characters.filter(val => {
+        if (val.name.toLowerCase().includes(input.toLowerCase())) {
+          return true;
         }
-        else if (val.name.toLowerCase().includes(input.toLowerCase())) {
-          console.log("yes");
-          setSearchedCharacters(val);
-        }
-      }
-    )
-  }
-  
-if(searchedCharacters && characters) {
-  console.log('search here:',searchedCharacters);
-  return <div className="app-container">
+        return false;
+      })
+      setSearchedCharacters(newCharacters);
+    }
+  }, [input]);
+
+  const handleInput = newInput => setInput(newInput);
+
+  if (searchedCharacters || characters) {
+    console.log('search here:',searchedCharacters);
+    return (
+      <div className="app-container">
         <div className="header-section">
           <HeaderComponent />
         </div>
         <div className="body-section">
-        <SearchComponent input={input}  
-            setKeyword={handleInput}
-            />
-            { 
-              input !== "" ? (
-              <CardList characters={searchedCharacters.searchedCharacters}/>
-              ) :
-              <CardList characters={characters.characters}/>
-            }
+        <SearchComponent
+          input={input}  
+          setKeyword={handleInput}
+        />
+        {input !== "" ? (
+          <CardList characters={searchedCharacters}/>
+        ) : (
+          <CardList characters={characters.characters}/>
+        )}
         </div>
       </div>
-      } else {
-        return <div>
-        </div>
-      }
+    );
+  } else {
+    return <div>NONE</div>
+  }
 }
 
 export default App;
